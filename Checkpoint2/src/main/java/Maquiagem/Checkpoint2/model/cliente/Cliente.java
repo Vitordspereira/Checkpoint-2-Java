@@ -1,6 +1,6 @@
-package Maquiagem.Checkpoint2.model.clienteMakeup;
+package Maquiagem.Checkpoint2.model.cliente;
 
-import Maquiagem.Checkpoint2.dto.clienteMakeup.CadastroCliente;
+import Maquiagem.Checkpoint2.dto.cliente.CadastroCliente;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,7 +31,6 @@ public class Cliente {
 
     @Column(name = "DS_EMAIL", length = 100)
     private String email;
-
 
     public Cliente(CadastroCliente clienteDto) {
         nome = clienteDto.nome();

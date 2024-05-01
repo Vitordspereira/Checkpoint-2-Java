@@ -1,6 +1,6 @@
-package Maquiagem.Checkpoint2.dto.clienteMakeup;
+package Maquiagem.Checkpoint2.dto.cliente;
 
-import Maquiagem.Checkpoint2.model.clienteMakeup.Cliente;
+import Maquiagem.Checkpoint2.model.cliente.Cliente;
 
 public record DetalhesCliente(Long id, String nome, String telefone, String email) {
 

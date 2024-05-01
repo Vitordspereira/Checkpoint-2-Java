@@ -1,9 +1,9 @@
-package Maquiagem.Checkpoint2.controller.clienteMakeup;
+package Maquiagem.Checkpoint2.controller.cliente;
 
-import Maquiagem.Checkpoint2.dto.clienteMakeup.CadastroCliente;
-import Maquiagem.Checkpoint2.dto.clienteMakeup.DetalhesCliente;
-import Maquiagem.Checkpoint2.model.clienteMakeup.Cliente;
-import Maquiagem.Checkpoint2.repository.clienteMakeup.ClienteRepository;
+import Maquiagem.Checkpoint2.dto.cliente.CadastroCliente;
+import Maquiagem.Checkpoint2.dto.cliente.DetalhesCliente;
+import Maquiagem.Checkpoint2.model.cliente.Cliente;
+import Maquiagem.Checkpoint2.repository.cliente.ClienteRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
