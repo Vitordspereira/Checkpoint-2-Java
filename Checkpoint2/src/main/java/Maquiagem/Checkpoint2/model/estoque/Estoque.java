@@ -1,5 +1,6 @@
 package Maquiagem.Checkpoint2.model.estoque;
 
+import Maquiagem.Checkpoint2.dto.estoque.CadastroEstoque;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,5 +29,8 @@ public class Estoque {
     @Column(name = "QT_ESTOQUE", length = 5)
     private Integer quantidade;
 
-
+    public Estoque(CadastroEstoque estoqueDto) {
+        produto = estoqueDto.produto();
+        quantidade = estoqueDto.quantidade();
+    }
 }

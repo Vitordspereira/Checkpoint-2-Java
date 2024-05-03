@@ -1,8 +1,8 @@
 package Maquiagem.Checkpoint2.model.cliente;
 
 import Maquiagem.Checkpoint2.dto.cliente.CadastroCliente;
+import Maquiagem.Checkpoint2.model.pedido.Pedido;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +11,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 
 @Entity
 @Table(name = "TB_CLIENTE_MAKEUP")
@@ -32,9 +31,15 @@ public class Cliente {
     @Column(name = "DS_EMAIL", length = 100)
     private String email;
 
+    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private Pedido pedido;
+
     public Cliente(CadastroCliente clienteDto) {
         nome = clienteDto.nome();
         telefone = clienteDto.telefone();
         email = clienteDto.email();
+        pedido = new Pedido(clienteDto);
+        pedido.setCliente(this);
     }
+
 }
