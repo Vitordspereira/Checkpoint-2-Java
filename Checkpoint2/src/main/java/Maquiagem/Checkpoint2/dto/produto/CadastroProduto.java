@@ -1,6 +1,7 @@
 package Maquiagem.Checkpoint2.dto.produto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public record CadastroProduto(
@@ -13,6 +14,7 @@ public record CadastroProduto(
         @Size(max = 100, message = "Marca deve conter até 100 caracteres")
         String marca,
 
+        @NotNull
         Integer valor
 ) {
 }

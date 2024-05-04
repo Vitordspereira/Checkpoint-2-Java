@@ -1,6 +1,7 @@
 package Maquiagem.Checkpoint2.dto.cliente;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
@@ -16,11 +17,10 @@ public record CadastroCliente(
         @Size(max = 100, message = "E-mail deve conter 100 caracteres")
         String email,
 
-        @NotBlank
-        @Size(max = 5, message = "Quantidade de pedido deve conter 5 caracteres")
+        @NotNull
         Integer qtpedido,
 
-        @NotBlank
+        @NotNull
         LocalDate compra
         ){
 

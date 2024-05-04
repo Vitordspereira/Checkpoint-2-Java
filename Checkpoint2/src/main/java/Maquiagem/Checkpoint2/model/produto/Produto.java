@@ -1,7 +1,11 @@
 package Maquiagem.Checkpoint2.model.produto;
 
 import Maquiagem.Checkpoint2.dto.cliente.CadastroCliente;
+import Maquiagem.Checkpoint2.dto.estoque.CadastroEstoque;
 import Maquiagem.Checkpoint2.dto.produto.CadastroProduto;
+import Maquiagem.Checkpoint2.model.cliente.Cliente;
+import Maquiagem.Checkpoint2.model.estoque.Estoque;
+import Maquiagem.Checkpoint2.model.fornecedor.Fornecedor;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,9 +37,19 @@ public class Produto {
     @Column(name = "VL_PRODUTO", length = 5)
     private Integer valor;
 
-    public Produto(CadastroProduto produtoDto) {
+    @ManyToOne
+    @JoinColumn(name = "ID_FORNECEDOR", nullable = false)
+    private Fornecedor fornecedor;
+
+    @OneToOne
+    @JoinColumn(name="ID_ESTOQUE", nullable = false, unique = true)
+    private Estoque estoque;
+
+    public Produto(CadastroEstoque produtoDto) {
         nome = produtoDto.nome();
         marca = produtoDto.marca();
         valor = produtoDto.valor();
+        this.fornecedor = fornecedor;
     }
+
 }

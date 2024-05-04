@@ -1,5 +1,6 @@
 package Maquiagem.Checkpoint2.controller.cliente;
 
+import Maquiagem.Checkpoint2.dto.cliente.AtualizacaoCliente;
 import Maquiagem.Checkpoint2.dto.cliente.CadastroCliente;
 import Maquiagem.Checkpoint2.dto.cliente.DetalhesCliente;
 import Maquiagem.Checkpoint2.model.cliente.Cliente;
@@ -41,6 +42,15 @@ public class ClienteController {
         var url = uriBuilder.path("clientes/{codigo}").buildAndExpand(cliente.getCodigo()).toUri();
         return ResponseEntity.created(url).body(new DetalhesCliente(cliente));
     }
+
+    @PutMapping("{id}")
+    @Transactional
+    public ResponseEntity<DetalhesCliente> put(@PathVariable("id") Long id, @RequestBody AtualizacaoCliente clienteDto){
+        var cliente = clienteRepository.getReferenceById(id);
+        cliente.atualizar(clienteDto);
+        return ResponseEntity.ok(new DetalhesCliente(cliente));
+    }
+
 
     @DeleteMapping("{id}")
     @Transactional

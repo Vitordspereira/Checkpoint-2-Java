@@ -2,12 +2,15 @@ package Maquiagem.Checkpoint2.model.fornecedor;
 
 import Maquiagem.Checkpoint2.dto.estoque.CadastroEstoque;
 import Maquiagem.Checkpoint2.dto.fornecedor.CadastroFornecedor;
+import Maquiagem.Checkpoint2.model.produto.Produto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,6 +35,9 @@ public class Fornecedor {
 
     @Column(name = "NR_FORNECEDOR", length = 15)
     private String telefone;
+
+    @OneToMany(mappedBy = "fornecedor")
+    private List<Produto> produtos;
 
     public Fornecedor(CadastroFornecedor fornecedorDto) {
         nome = fornecedorDto.nome();

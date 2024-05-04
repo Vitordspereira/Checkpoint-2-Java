@@ -1,5 +1,6 @@
 package Maquiagem.Checkpoint2.model.cliente;
 
+import Maquiagem.Checkpoint2.dto.cliente.AtualizacaoCliente;
 import Maquiagem.Checkpoint2.dto.cliente.CadastroCliente;
 import Maquiagem.Checkpoint2.model.pedido.Pedido;
 import jakarta.persistence.*;
@@ -31,7 +32,7 @@ public class Cliente {
     @Column(name = "DS_EMAIL", length = 100)
     private String email;
 
-    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
     private Pedido pedido;
 
     public Cliente(CadastroCliente clienteDto) {
@@ -42,4 +43,15 @@ public class Cliente {
         pedido.setCliente(this);
     }
 
+    public void atualizar(AtualizacaoCliente  clienteDto) {
+        if (clienteDto.nome() != null){
+            this.nome = clienteDto.nome();
+        }
+        if (clienteDto.telefone() != null){
+            this.telefone = clienteDto.telefone();
+        }
+        if (clienteDto.email() != null){
+            this.email = clienteDto.email();
+        }
+    }
 }

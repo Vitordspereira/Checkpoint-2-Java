@@ -27,29 +27,14 @@ public class ProdutoController {
     private ProdutoRepository produtoRepository;
 
     @GetMapping
-    public ResponseEntity<List<DetalhesProduto>> get(Pageable pageable){
+    public ResponseEntity<List<DetalhesProduto>> get(Pageable pageable) {
         var lista = produtoRepository.findAll(pageable).stream().map(DetalhesProduto::new).toList();
         return ResponseEntity.ok(lista);
     }
+
     @GetMapping("{id}")
-    public ResponseEntity<DetalhesProduto> get(@PathVariable("id") Long id){
+    public ResponseEntity<DetalhesProduto> get(@PathVariable("id") Long id) {
         var produto = produtoRepository.getReferenceById(id);
         return ResponseEntity.ok(new DetalhesProduto(produto));
-    }
-    @PostMapping
-    @Transactional
-    public ResponseEntity<DetalhesProduto> cadastrar(@RequestBody @Valid CadastroProduto produtoDto,
-                                                     UriComponentsBuilder uriBuilder) {
-        var produto = new Produto(produtoDto);
-        produtoRepository.save(produto);
-        var url = uriBuilder.path("produtos/{codigo}").buildAndExpand(produto.getCodigo()).toUri();
-        return ResponseEntity.created(url).body(new DetalhesProduto(produto));
-    }
-
-    @DeleteMapping("{id}")
-    @Transactional
-    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
-        produtoRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
     }
 }
