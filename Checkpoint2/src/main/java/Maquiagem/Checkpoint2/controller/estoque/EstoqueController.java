@@ -1,5 +1,8 @@
 package Maquiagem.Checkpoint2.controller.estoque;
 
+import Maquiagem.Checkpoint2.dto.cliente.AtualizacaoCliente;
+import Maquiagem.Checkpoint2.dto.cliente.DetalhesCliente;
+import Maquiagem.Checkpoint2.dto.estoque.AtualizacaoEstoque;
 import Maquiagem.Checkpoint2.dto.estoque.CadastroEstoque;
 import Maquiagem.Checkpoint2.dto.estoque.DetalhesEstoque;
 import Maquiagem.Checkpoint2.model.estoque.Estoque;
@@ -40,6 +43,14 @@ public class EstoqueController {
         estoqueRepository.save(estoque);
         var url = uriBuilder.path("estoques/{codigo}").buildAndExpand(estoque.getCodigo()).toUri();
         return ResponseEntity.created(url).body(new DetalhesEstoque(estoque));
+    }
+
+    @PutMapping("{id}")
+    @Transactional
+    public ResponseEntity<DetalhesEstoque> put(@PathVariable("id") Long id, @RequestBody AtualizacaoEstoque estoqueDto){
+        var estoque = estoqueRepository.getReferenceById(id);
+        estoque.atualizar(estoqueDto);
+        return ResponseEntity.ok(new DetalhesEstoque(estoque));
     }
 
     @DeleteMapping("{id}")

@@ -1,9 +1,8 @@
 package Maquiagem.Checkpoint2.model.produto;
 
-import Maquiagem.Checkpoint2.dto.cliente.CadastroCliente;
 import Maquiagem.Checkpoint2.dto.estoque.CadastroEstoque;
+import Maquiagem.Checkpoint2.dto.fornecedor.CadastroFornecedor;
 import Maquiagem.Checkpoint2.dto.produto.CadastroProduto;
-import Maquiagem.Checkpoint2.model.cliente.Cliente;
 import Maquiagem.Checkpoint2.model.estoque.Estoque;
 import Maquiagem.Checkpoint2.model.fornecedor.Fornecedor;
 import jakarta.persistence.*;
@@ -38,7 +37,7 @@ public class Produto {
     private Integer valor;
 
     @ManyToOne
-    @JoinColumn(name = "ID_FORNECEDOR", nullable = false)
+    @JoinColumn(name = "ID_FORNECEDOR",nullable = false)
     private Fornecedor fornecedor;
 
     @OneToOne
@@ -49,7 +48,5 @@ public class Produto {
         nome = produtoDto.nome();
         marca = produtoDto.marca();
         valor = produtoDto.valor();
-        this.fornecedor = fornecedor;
     }
-
 }

@@ -39,17 +39,7 @@ public class FornecedorController {
         return ResponseEntity.ok(new DetalhesFornecedor(fornecedor));
     }
 
-    @PostMapping("{id}/produtos")
-    @Transactional
-    public ResponseEntity<DetalhesProduto> post(@PathVariable("id") Long id,
-                                                @RequestBody @Valid CadastroProduto produtoDto,
-                                                UriComponentsBuilder uriBuilder){
-        var fornecedor = fornecedorRepository.getReferenceById(id);
-        var produto = new Produto(produtoDto, fornecedor);
-        produtoRepository.save(produto);
-        var uri = uriBuilder.path("produtos/{id}").buildAndExpand(produto.getCodigo()).toUri();
-        return ResponseEntity.created(uri).body(new DetalhesProduto(produto));
-    }
+
 
 
     @PostMapping

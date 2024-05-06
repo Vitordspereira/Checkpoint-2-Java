@@ -17,10 +17,9 @@ public record CadastroCliente(
         @Size(max = 100, message = "E-mail deve conter 100 caracteres")
         String email,
 
-        @NotNull
+
         Integer qtpedido,
 
-        @NotNull
         LocalDate compra
         ){
 

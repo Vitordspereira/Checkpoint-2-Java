@@ -14,7 +14,7 @@ public record CadastroProduto(
         @Size(max = 100, message = "Marca deve conter até 100 caracteres")
         String marca,
 
-        @NotNull
+        
         Integer valor
 ) {
 }

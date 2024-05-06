@@ -36,7 +36,7 @@ public class Fornecedor {
     @Column(name = "NR_FORNECEDOR", length = 15)
     private String telefone;
 
-    @OneToMany(mappedBy = "fornecedor")
+    @OneToMany(mappedBy = "fornecedor", cascade = CascadeType.ALL)
     private List<Produto> produtos;
 
     public Fornecedor(CadastroFornecedor fornecedorDto) {

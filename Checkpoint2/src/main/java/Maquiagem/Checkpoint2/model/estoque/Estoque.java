@@ -2,6 +2,7 @@ package Maquiagem.Checkpoint2.model.estoque;
 
 import Maquiagem.Checkpoint2.dto.cliente.AtualizacaoCliente;
 import Maquiagem.Checkpoint2.dto.cliente.CadastroCliente;
+import Maquiagem.Checkpoint2.dto.estoque.AtualizacaoEstoque;
 import Maquiagem.Checkpoint2.dto.estoque.CadastroEstoque;
 import Maquiagem.Checkpoint2.model.pedido.Pedido;
 import Maquiagem.Checkpoint2.model.produto.Produto;
@@ -31,15 +32,20 @@ public class Estoque {
     @Column(name = "QT_ESTOQUE", length = 5)
     private Integer quantidade;
 
-    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "estoque", cascade = CascadeType.ALL)
     private Produto produto;
 
-    public Estoque(CadastroEstoque estoqueDto) {
-
+    public Estoque(CadastroEstoque estoqueDto){
         quantidade = estoqueDto.quantidade();
+        produto = new Produto(estoqueDto);
+        produto.setEstoque(this);
     }
 
+    public void atualizar(AtualizacaoEstoque estoqueDto) {
+        if (estoqueDto.quantidade() != null) {
+            this.quantidade = estoqueDto.quantidade();
+        }
 
 
-
+    }
 }
