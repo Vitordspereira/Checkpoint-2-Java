@@ -1,4 +1,4 @@
-Projeto Makeup lipstick
+Projeto Makeup 💄
 
 Integrantes: 
 Ana Júlia Almeida Silva Neves - RM:98974 |
